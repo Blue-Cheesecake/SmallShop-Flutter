@@ -1,39 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:small_shop/providers/product_provider.dart';
 import 'package:small_shop/screens/product_detail/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({
-    Key? key,
-    required this.id,
-    required this.title,
-    required this.imageUrl,
-  }) : super(key: key);
-
-  final String id;
-  final String title;
-  final String imageUrl;
+  const ProductItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final ProductProvider productProvider =
+        Provider.of<ProductProvider>(context);
+
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       child: InkWell(
         onTap: () {
           Navigator.of(context).pushNamed(
             ProductDetailScreen.routeName,
-            arguments: id,
+            arguments: productProvider.id,
           );
         },
         child: GridTile(
           footer: GridTileBar(
             backgroundColor: Colors.black87,
             leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.favorite),
+              onPressed: productProvider.toggleFavorite,
+              icon: Icon(
+                productProvider.isFavorite
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+              ),
               color: Theme.of(context).colorScheme.secondary,
             ),
             title: Text(
-              title,
+              productProvider.title,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 13,
@@ -46,7 +46,7 @@ class ProductItem extends StatelessWidget {
             ),
           ),
           child: Image.network(
-            imageUrl,
+            productProvider.imageUrl,
             fit: BoxFit.cover,
           ),
         ),
