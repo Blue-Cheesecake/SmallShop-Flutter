@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:small_shop/providers/cart_provider.dart';
 import 'package:small_shop/providers/product_provider.dart';
 import 'package:small_shop/screens/product_detail/product_detail_screen.dart';
 
@@ -9,7 +10,9 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductProvider productProvider =
-        Provider.of<ProductProvider>(context);
+    Provider.of<ProductProvider>(context);
+
+    final CartProvider cartProvider = Provider.of<CartProvider>(context);
 
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -24,28 +27,45 @@ class ProductItem extends StatelessWidget {
           footer: GridTileBar(
             backgroundColor: Colors.black87,
             leading: Consumer<ProductProvider>(
-              builder: (_, value, __) => IconButton(
-                splashColor: Colors.transparent,
-                onPressed: productProvider.toggleFavorite,
-                icon: Icon(
-                  productProvider.isFavorite
-                      ? Icons.favorite
-                      : Icons.favorite_border,
-                ),
-                color: Theme.of(context).colorScheme.secondary,
-              ),
+              builder: (_, value, __) =>
+                  IconButton(
+                    splashColor: Colors.transparent,
+                    onPressed: productProvider.toggleFavorite,
+                    icon: Icon(
+                      productProvider.isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                    ),
+                    color: Theme
+                        .of(context)
+                        .colorScheme
+                        .secondary,
+                  ),
             ),
+
+
             title: Text(
               productProvider.title,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 13,
               ),
             ),
+
+
             trailing: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.shopping_cart),
-              color: Theme.of(context).colorScheme.secondary,
+              onPressed: () {
+                cartProvider.addItem(
+                  productProvider.id,
+                  productProvider.price,
+                  productProvider.title,
+                );
+              },
+              icon: const Icon(Icons.add_shopping_cart),
+              color: Theme
+                  .of(context)
+                  .colorScheme
+                  .secondary,
             ),
           ),
           child: Image.network(
