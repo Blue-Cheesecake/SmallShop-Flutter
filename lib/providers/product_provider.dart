@@ -16,9 +16,15 @@ class ProductProvider with ChangeNotifier {
     required this.imageUrl,
     this.isFavorite = false,
   });
-  
+
   void toggleFavorite() {
     isFavorite = !isFavorite;
     notifyListeners();
+  }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return title;
   }
 }

@@ -22,6 +22,7 @@ class Main extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           fontFamily: "Lato",
+          useMaterial3: true,
           primarySwatch: Colors.blue,
           colorScheme: ColorScheme.fromSwatch(
             accentColor: Colors.deepOrangeAccent,
