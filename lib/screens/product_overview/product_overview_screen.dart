@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:small_shop/constants/show_option.dart';
 import 'package:small_shop/providers/cart_provider.dart';
+import 'package:small_shop/screens/cart/cart_screen.dart';
 import 'package:small_shop/widgets/badge.dart';
 import 'package:small_shop/widgets/products_grid.dart';
 
@@ -50,8 +51,7 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
               Icons.settings,
               color: Colors.blue,
             ),
-            itemBuilder: (context) =>
-            <PopupMenuEntry>[
+            itemBuilder: (context) => <PopupMenuEntry>[
               const PopupMenuItem(
                 value: ShowOption.onlyFavorites,
                 child: Text("Only Favorites"),
@@ -62,22 +62,19 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
               ),
             ],
           ),
-
-
           Consumer<CartProvider>(
-            builder: (context, value, c) =>
-                Badge(
-                  value: value.totalItems.toString(),
-                  child: c!,
-                ),
+            builder: (context, value, c) => Badge(
+              value: value.totalItems.toString(),
+              child: c!,
+            ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
               icon: Icon(
                 Icons.shopping_bag,
                 size: 30,
-                color: Theme
-                    .of(context)
-                    .primaryColor,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           )

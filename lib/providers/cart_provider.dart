@@ -5,7 +5,8 @@ import 'package:small_shop/models/cart_item.dart';
 
 class CartProvider with ChangeNotifier {
   final Map<String, CartItem> _items = {};
-  var _totalItems = 0;
+  int _totalItems = 0;
+  double _totalPrice = 0.0;
 
   Map<String, CartItem> get items {
     return {..._items};
@@ -13,8 +14,12 @@ class CartProvider with ChangeNotifier {
 
   int get totalItems => _totalItems;
 
-  void addItem(
-      BuildContext context, String productId, double price, String title) {
+  double get totalPrice => _totalPrice;
+
+  List<CartItem> get listItems => List.of(_items.values);
+
+  void addItem(BuildContext context, String productId, double price,
+      String title, String imageUrl) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text(
@@ -30,6 +35,10 @@ class CartProvider with ChangeNotifier {
         duration: const Duration(milliseconds: 1500),
       ),
     );
+
+    // Add price
+    _totalPrice += price;
+
     _totalItems += 1;
     if (_items.containsKey(productId)) {
       _items.update(productId, (c) {
@@ -48,6 +57,7 @@ class CartProvider with ChangeNotifier {
         title: title,
         quantity: 1,
         price: price,
+        imageUrl: imageUrl,
       ),
     );
     print(_items);
