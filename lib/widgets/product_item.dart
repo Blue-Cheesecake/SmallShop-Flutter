@@ -10,7 +10,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductProvider productProvider =
-    Provider.of<ProductProvider>(context);
+        Provider.of<ProductProvider>(context);
 
     final CartProvider cartProvider = Provider.of<CartProvider>(context);
 
@@ -27,23 +27,17 @@ class ProductItem extends StatelessWidget {
           footer: GridTileBar(
             backgroundColor: Colors.black87,
             leading: Consumer<ProductProvider>(
-              builder: (_, value, __) =>
-                  IconButton(
-                    splashColor: Colors.transparent,
-                    onPressed: productProvider.toggleFavorite,
-                    icon: Icon(
-                      productProvider.isFavorite
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                    ),
-                    color: Theme
-                        .of(context)
-                        .colorScheme
-                        .secondary,
-                  ),
+              builder: (_, value, __) => IconButton(
+                splashColor: Colors.transparent,
+                onPressed: productProvider.toggleFavorite,
+                icon: Icon(
+                  productProvider.isFavorite
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                ),
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
-
-
             title: Text(
               productProvider.title,
               textAlign: TextAlign.center,
@@ -51,21 +45,17 @@ class ProductItem extends StatelessWidget {
                 fontSize: 13,
               ),
             ),
-
-
             trailing: IconButton(
               onPressed: () {
                 cartProvider.addItem(
+                  context,
                   productProvider.id,
                   productProvider.price,
                   productProvider.title,
                 );
               },
               icon: const Icon(Icons.add_shopping_cart),
-              color: Theme
-                  .of(context)
-                  .colorScheme
-                  .secondary,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           child: Image.network(
