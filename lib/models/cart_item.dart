@@ -23,4 +23,19 @@ class CartItem {
   String toString() {
     return "$title: $quantity";
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (other is CartItem) {
+      return other.title == title &&
+          other.quantity == quantity &&
+          other.price == price &&
+          other.imageUrl == imageUrl;
+    }
+    return false;
+  }
+
+  @override
+  // TODO: implement hashCode
+  int get hashCode => Object.hash(title, quantity, price, imageUrl);
 }
