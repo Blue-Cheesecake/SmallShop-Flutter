@@ -4,6 +4,7 @@ class CartItem {
   int quantity;
   final double price;
   final String imageUrl;
+  final DateTime addedAt;
 
   CartItem({
     required this.id,
@@ -11,6 +12,7 @@ class CartItem {
     required this.quantity,
     required this.price,
     required this.imageUrl,
+    required this.addedAt,
   });
 
   void addOneQuantity() {

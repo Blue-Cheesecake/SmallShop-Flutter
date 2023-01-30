@@ -16,7 +16,14 @@ class CartProvider with ChangeNotifier {
 
   double get totalPrice => _totalPrice;
 
-  List<CartItem> get listItems => List.of(_items.values);
+  /// Return the list items that sorted by initial added date
+  ///
+  /// Add first, display first
+  List<CartItem> get listItems {
+    List<CartItem> result = List.of(_items.values);
+    result.sort((a, b) => a.addedAt.second - b.addedAt.second);
+    return result;
+  }
 
   void removeItem(CartItem cartItem) {
     _items.removeWhere((key, value) => value.id == cartItem.id);
@@ -114,6 +121,7 @@ class CartProvider with ChangeNotifier {
         quantity: 1,
         price: price,
         imageUrl: imageUrl,
+        addedAt: DateTime.now(),
       ),
     );
     print(_items);
