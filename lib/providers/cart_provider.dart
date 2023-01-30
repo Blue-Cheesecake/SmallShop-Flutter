@@ -122,6 +122,7 @@ class CartProvider with ChangeNotifier {
         price: price,
         imageUrl: imageUrl,
         addedAt: DateTime.now(),
+        productId: productId,
       ),
     );
     print(_items);

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:small_shop/constants/show_option.dart';
 import 'package:small_shop/providers/cart_provider.dart';
 import 'package:small_shop/screens/cart/cart_screen.dart';
+import 'package:small_shop/widgets/app_drawer.dart';
 import 'package:small_shop/widgets/badge.dart';
 import 'package:small_shop/widgets/products_grid.dart';
 
@@ -22,6 +23,7 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         bottom: const PreferredSize(
           preferredSize: Size(double.infinity, 0),

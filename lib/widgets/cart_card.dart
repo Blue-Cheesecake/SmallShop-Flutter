@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:small_shop/models/cart_item.dart';
 import 'package:small_shop/providers/cart_provider.dart';
+import 'package:small_shop/screens/product_detail/product_detail_screen.dart';
 
 class CartCard extends StatelessWidget {
   const CartCard({Key? key, required this.cartItem}) : super(key: key);
@@ -77,6 +78,13 @@ class CartCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
+            onTap: () {
+              // Navigate to product detail screen
+              Navigator.of(context).pushNamed(
+                ProductDetailScreen.routeName,
+                arguments: cartItem.productId,
+              );
+            },
             leading: SizedBox(
               width: 80,
               child: Image.network(

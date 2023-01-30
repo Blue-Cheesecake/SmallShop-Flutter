@@ -5,6 +5,7 @@ import 'package:small_shop/providers/cart_provider.dart';
 import 'package:small_shop/providers/orders_provider.dart';
 import 'package:small_shop/providers/products_provider.dart';
 import 'package:small_shop/screens/cart/cart_screen.dart';
+import 'package:small_shop/screens/orders/orders_screen.dart';
 import 'package:small_shop/screens/product_detail/product_detail_screen.dart';
 import 'package:small_shop/screens/product_overview/product_overview_screen.dart';
 
@@ -47,6 +48,7 @@ class Main extends StatelessWidget {
           ProductDetailScreen.routeName: (context) =>
               const ProductDetailScreen(),
           CartScreen.routeName: (context) => const CartScreen(),
+          OrdersScreen.routeName: (context) => const OrdersScreen(),
         },
       ),
     );

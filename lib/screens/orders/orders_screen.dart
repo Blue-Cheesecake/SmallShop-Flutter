@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:small_shop/providers/orders_provider.dart';
+import 'package:small_shop/widgets/app_drawer.dart';
 import 'package:small_shop/widgets/order_item.dart';
 
 class OrdersScreen extends StatelessWidget {
@@ -25,13 +26,6 @@ class OrdersScreen extends StatelessWidget {
         backgroundColor: const Color.fromARGB(100, 230, 230, 230),
         title: const Text("Orders"),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.blue,
-          ),
-        ),
       ),
       body: SafeArea(
         child: ListView.builder(
@@ -40,6 +34,7 @@ class OrdersScreen extends StatelessWidget {
           itemBuilder: (_, i) => OrderItem(order: ordersProvider.orderItems[i]),
         ),
       ),
+      drawer: const AppDrawer(),
     );
   }
 }
