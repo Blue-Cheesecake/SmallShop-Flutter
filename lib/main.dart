@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:small_shop/providers/cart_provider.dart';
+import 'package:small_shop/providers/orders_provider.dart';
 import 'package:small_shop/providers/products_provider.dart';
 import 'package:small_shop/screens/cart/cart_screen.dart';
 import 'package:small_shop/screens/product_detail/product_detail_screen.dart';
@@ -21,6 +22,7 @@ class Main extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ProductsProvider()),
         ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => OrdersProvider()),
       ],
       child: MaterialApp(
         theme: ThemeData(
