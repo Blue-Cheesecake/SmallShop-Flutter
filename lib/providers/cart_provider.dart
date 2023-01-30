@@ -76,11 +76,13 @@ class CartProvider with ChangeNotifier {
     return isFound;
   }
 
-  void addItem(BuildContext context,
-      String productId,
-      double price,
-      String title,
-      String imageUrl,) {
+  void addItem(
+    BuildContext context,
+    String productId,
+    double price,
+    String title,
+    String imageUrl,
+  ) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text(
@@ -92,10 +94,7 @@ class CartProvider with ChangeNotifier {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .secondary,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         duration: const Duration(milliseconds: 1500),
       ),
     );
@@ -116,15 +115,14 @@ class CartProvider with ChangeNotifier {
 
     _items.putIfAbsent(
       productId,
-          () =>
-          CartItem(
-            id: DateTime.now().toString(),
-            title: title,
-            quantity: 1,
-            price: price,
-            imageUrl: imageUrl,
-            addedAt: DateTime.now(),
-          ),
+      () => CartItem(
+        id: DateTime.now().toString(),
+        title: title,
+        quantity: 1,
+        price: price,
+        imageUrl: imageUrl,
+        addedAt: DateTime.now(),
+      ),
     );
     print(_items);
     notifyListeners();
@@ -132,6 +130,8 @@ class CartProvider with ChangeNotifier {
 
   void clear() {
     _items.clear();
+    _totalItems = 0;
+    _totalPrice = 0.0;
     notifyListeners();
   }
 

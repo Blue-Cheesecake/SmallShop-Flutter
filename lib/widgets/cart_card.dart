@@ -143,7 +143,7 @@ class CartCard extends StatelessWidget {
               ],
             ),
             visualDensity: VisualDensity.comfortable,
-            trailing: Text("\$${cartItem.totalAmount}"),
+            trailing: Text("\$${cartItem.totalAmount.toStringAsFixed(2)}"),
           ),
         ),
       ),

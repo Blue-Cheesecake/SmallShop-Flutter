@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:small_shop/models/cart_item.dart';
 import 'package:small_shop/providers/cart_provider.dart';
+import 'package:small_shop/providers/orders_provider.dart';
 import 'package:small_shop/widgets/cart_card.dart';
 
 class CartScreen extends StatelessWidget {
@@ -50,7 +51,15 @@ class CartScreen extends StatelessWidget {
               title: Text(
                   "Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}"),
               trailing: CupertinoButton.filled(
-                  child: const Text("Order"), onPressed: () {}),
+                child: const Text("Order"),
+                onPressed: () {
+                  Provider.of<OrdersProvider>(context, listen: false).addOrder(
+                    cartItems,
+                    cartProvider.totalPrice,
+                    cartProvider,
+                  );
+                },
+              ),
             ),
           ],
         ),
