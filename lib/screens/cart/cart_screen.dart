@@ -17,7 +17,7 @@ class CartScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cart'),
+        title: const Text('Cart'),
         bottom: const PreferredSize(
           preferredSize: Size(double.infinity, 0),
           child: Divider(
@@ -36,22 +36,24 @@ class CartScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: cartItems.length,
-            itemBuilder: (context, index) =>
-                CartCard(cartItem: cartItems[index]),
-          ),
-          ListTile(
-            title:
-                Text("Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}"),
-            trailing:
-                CupertinoButton.filled(child: Text("Order"), onPressed: () {}),
-          ),
-        ],
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) =>
+                  CartCard(cartItem: cartItems[index]),
+            ),
+            ListTile(
+              title: Text(
+                  "Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}"),
+              trailing: CupertinoButton.filled(
+                  child: const Text("Order"), onPressed: () {}),
+            ),
+          ],
+        ),
       ),
     );
   }

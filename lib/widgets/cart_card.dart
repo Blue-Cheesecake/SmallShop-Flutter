@@ -17,21 +17,17 @@ class CartCard extends StatelessWidget {
       context: context,
       builder: (context) {
         return CupertinoAlertDialog(
-          title: Text(
-            "Alert",
-            style: TextStyle(color: Theme.of(context).errorColor),
-          ),
-          content: Text("Do you actually want to remove this item?"),
+          title: const Text("Warning"),
+          content: const Text("Do you actually want to remove this item?"),
           actions: <CupertinoDialogAction>[
             CupertinoDialogAction(
-              child: Text("No"),
               isDefaultAction: true,
               onPressed: () {
                 Navigator.pop(context);
               },
+              child: const Text("No"),
             ),
             CupertinoDialogAction(
-              child: Text("Yes"),
               isDestructiveAction: true,
               onPressed: () {
                 Navigator.pop(context);
@@ -41,6 +37,7 @@ class CartCard extends StatelessWidget {
                 );
                 cartProvider.removeOneFromItem(cartItem);
               },
+              child: const Text("Yes"),
             )
           ],
         );
@@ -102,7 +99,6 @@ class CartCard extends StatelessWidget {
                     //
                     IconButton(
                       onPressed: () {
-                        print(cartItem.quantity);
                         if (cartItem.quantity == 1) {
                           _showWarningDialog(context);
                           return;
