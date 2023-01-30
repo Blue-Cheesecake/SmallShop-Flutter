@@ -83,6 +83,7 @@ class CartProvider with ChangeNotifier {
     String title,
     String imageUrl,
   ) {
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text(

@@ -25,6 +25,20 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              icon: Icon(
+                Icons.menu_open_outlined,
+                color: Theme.of(context).primaryColor,
+                size: 28,
+              ),
+            );
+          },
+        ),
         bottom: const PreferredSize(
           preferredSize: Size(double.infinity, 0),
           child: Divider(

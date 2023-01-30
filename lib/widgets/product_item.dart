@@ -46,6 +46,7 @@ class ProductItem extends StatelessWidget {
               ),
             ),
             trailing: IconButton(
+              splashRadius: 0.01,
               onPressed: () {
                 cartProvider.addItem(
                   context,

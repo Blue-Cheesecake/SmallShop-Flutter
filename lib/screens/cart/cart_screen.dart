@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:small_shop/models/cart_item.dart';
 import 'package:small_shop/providers/cart_provider.dart';
 import 'package:small_shop/providers/orders_provider.dart';
+import 'package:small_shop/screens/orders/orders_screen.dart';
 import 'package:small_shop/widgets/cart_card.dart';
 
 class CartScreen extends StatelessWidget {
@@ -47,6 +48,8 @@ class CartScreen extends StatelessWidget {
               itemBuilder: (context, index) =>
                   CartCard(cartItem: cartItems[index]),
             ),
+
+
             ListTile(
               title: Text(
                   "Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}"),
@@ -58,6 +61,7 @@ class CartScreen extends StatelessWidget {
                     cartProvider.totalPrice,
                     cartProvider,
                   );
+                  Navigator.of(context).pushNamed(OrdersScreen.routeName);
                 },
               ),
             ),

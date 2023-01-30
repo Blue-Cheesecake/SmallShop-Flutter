@@ -32,6 +32,7 @@ class Main extends StatelessWidget {
           primarySwatch: Colors.blue,
           colorScheme: ColorScheme.fromSwatch(
             accentColor: Colors.deepOrangeAccent,
+            cardColor: Colors.white,
           ),
         ),
         debugShowCheckedModeBanner: false,
